@@ -53,6 +53,10 @@ run 'git show HEAD:devoxx.txt | cat -A'
 run 'git show HEAD:folder/HelloWorld.txt | cat -A'
 run 'git show HEAD:folder/empty.txt | cat -A'
 
+# HEAD
+run cat -A .git/HEAD
+show head
+
 # TODO
 
 # Conclusion
