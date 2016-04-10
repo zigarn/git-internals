@@ -46,6 +46,13 @@ prompt && pause
 cd $BASE_DIR
 run git show introduction
 
+# Creation du dépôt de démo
+run source ./setup-repo.sh
+run git log --graph --decorate --stat
+run 'git show HEAD:devoxx.txt | cat -A'
+run 'git show HEAD:folder/HelloWorld.txt | cat -A'
+run 'git show HEAD:folder/empty.txt | cat -A'
+
 # TODO
 
 # Conclusion
