@@ -27,6 +27,17 @@ run() {
 	pause
 }
 
+fake_run() {
+	local cmd=$1
+	local res=$2
+	echo "$cmd"
+	pause
+	echo "$res"
+	echo
+	prompt
+	pause
+}
+
 show() {
 	eog -f $BASE_DIR/${1}.png
 	pause
@@ -69,6 +80,14 @@ show ref
 run cat -A .git/objects/1c/3071594c824c3e56c2880a5762b255b4353446
 run 'cat .git/objects/1c/3071594c824c3e56c2880a5762b255b4353446 | zlib-uncompress | cat -A'
 show commit
+
+# Tree
+run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | cat -A'
+run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | xxd -p -s 26 -l 20'
+run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | xxd -p -s 59 -l 20'
+fake_run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | decode' 'tree 71^@100644 devoxx.txt^@961777f374f9ad986b004f07049b3f6443ff270f40000 folder^@49b4e4747c1c1bd8746235f146fe287992add5e9'
+fake_run 'cat .git/objects/49/b4e4747c1c1bd8746235f146fe287992add5e9 | zlib-uncompress | decode' 'tree 79^@100644 HelloWorld.txt^@cd0875583aabe89ee197ea133980a9085d08e497100644 empty.txt^@e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+show tree
 
 # TODO
 
