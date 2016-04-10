@@ -89,6 +89,12 @@ fake_run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-unco
 fake_run 'cat .git/objects/49/b4e4747c1c1bd8746235f146fe287992add5e9 | zlib-uncompress | decode' 'tree 79^@100644 HelloWorld.txt^@cd0875583aabe89ee197ea133980a9085d08e497100644 empty.txt^@e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
 show tree
 
+# Blob
+run 'cat .git/objects/96/1777f374f9ad986b004f07049b3f6443ff270f | zlib-uncompress | cat -A'
+run 'cat .git/objects/cd/0875583aabe89ee197ea133980a9085d08e497 | zlib-uncompress | cat -A'
+run 'cat .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 | zlib-uncompress | cat -A'
+show blob
+
 # TODO
 
 # Conclusion
