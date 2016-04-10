@@ -32,6 +32,10 @@ show() {
 	pause
 }
 
+zlib-uncompress() {
+	python -c "import sys, zlib; sys.stdout.write(zlib.decompress(sys.stdin.read()))"
+}
+
 clear
 prompt && pause
 # Intro
@@ -60,6 +64,11 @@ show head
 # Reference
 run cat -A .git/refs/heads/master
 show ref
+
+# Commit
+run cat -A .git/objects/1c/3071594c824c3e56c2880a5762b255b4353446
+run 'cat .git/objects/1c/3071594c824c3e56c2880a5762b255b4353446 | zlib-uncompress | cat -A'
+show commit
 
 # TODO
 
