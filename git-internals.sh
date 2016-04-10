@@ -57,6 +57,10 @@ run 'git show HEAD:folder/empty.txt | cat -A'
 run cat -A .git/HEAD
 show head
 
+# Reference
+run cat -A .git/refs/heads/master
+show ref
+
 # TODO
 
 # Conclusion

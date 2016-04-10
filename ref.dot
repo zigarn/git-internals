@@ -1,0 +1,8 @@
+digraph structs {
+  pad="1,1";
+  node [shape=record,fontsize=11];
+  rankdir="TB";
+  _refs___heads___master [style=filled, fillcolor=gray,  label="{{ref:local branch|refs\/heads\/master}|1c30\l}"]
+  _HEAD [style=filled, fillcolor=gray30, fontcolor=white,  label="{{ref|HEAD}|refs\/heads\/master\l}"]
+  _HEAD -> _refs___heads___master
+}
