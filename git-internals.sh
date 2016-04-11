@@ -95,6 +95,18 @@ run 'cat .git/objects/cd/0875583aabe89ee197ea133980a9085d08e497 | zlib-uncompres
 run 'cat .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 | zlib-uncompress | cat -A'
 show blob
 
+# Git objects
+fake_run 'display-format blob' 'blob SPACE <size> NULL <content>'
+fake_run 'display-format tree' 'tree SPACE <size> NULL (<mode> SPACE <name> NULL <binary_sha1>)+'
+fake_run 'display-format commit' 'commit SPACE <size> NULL tree SPACE <sha1> LF
+(parent SPACE <sha1> LF)*
+author SPACE <author> SPACE <timestamp> LF
+commiter SPACE <committer> SPACE <timestamp> LF
+LF
+<message>'
+fake_run 'display-format ref' '<sha1>'
+fake_run 'display-format HEAD' 'ref: SPACE refs/heads/<branch_name>'
+
 # TODO
 
 # Conclusion
