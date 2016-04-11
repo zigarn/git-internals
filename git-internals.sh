@@ -146,6 +146,15 @@ mkdir -p .git/objects/${TREE_ROOT_SHA1:0:2} && cat /tmp/git_object | zlib-compre
 
 show create_trees
 
+# Create commit
+run 'COMMIT_DATE=$(date -d "2016-04-21T18:55:00+0200" +"%s %z") && echo $COMMIT_DATE'
+run 'COMMIT="tree $TREE_ROOT_SHA1\nauthor Alexandre Garnier <alexandre.garnier@zenika.com> $COMMIT_DATE\ncommitter Alexandre Garnier <alexandre.garnier@zenika.com> $COMMIT_DATE\n\n1st commit\n" && echo -ne $COMMIT | cat -A'
+run 'GIT_OBJECT=$(echo -n "commit $(echo -ne $COMMIT | wc --bytes)\x00$COMMIT") && echo -ne $GIT_OBJECT | cat -A'
+run 'COMMIT_SHA1=$(echo -ne $GIT_OBJECT | sha1sum | awk "{ print \$1 }") && echo $COMMIT_SHA1'
+run 'mkdir -p .git/objects/${COMMIT_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-compress > .git/objects/${COMMIT_SHA1:0:2}/${COMMIT_SHA1:2}'
+
+show create_commit
+
 # TODO
 
 # Conclusion
