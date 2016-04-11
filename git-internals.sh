@@ -133,6 +133,19 @@ mkdir -p .git/objects/${BLOB_EMPTY_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-comp
 
 show create_blobs
 
+# Create trees (use files to avoid interpretation of binary during echoes)
+run '(echo -ne "100644 HelloWorld.txt\x00"; echo $BLOB_HELLO_SHA1 | xxd -r -p; echo -ne "100644 empty.txt\x00"; echo $BLOB_EMPTY_SHA1 | xxd -r -p) >/tmp/tree && cat -A /tmp/tree && echo'
+run '(echo -ne "tree $(wc --bytes /tmp/tree | awk "{ print \$1 }")\x00"; cat /tmp/tree) >/tmp/git_object && cat -A /tmp/git_object && echo'
+run 'TREE_FOLDER_SHA1=$(sha1sum /tmp/git_object | awk "{ print \$1 }") && echo $TREE_FOLDER_SHA1'
+run 'mkdir -p .git/objects/${TREE_FOLDER_SHA1:0:2} && cat /tmp/git_object | zlib-compress > .git/objects/${TREE_FOLDER_SHA1:0:2}/${TREE_FOLDER_SHA1:2}'
+
+run '(echo -ne "100644 devoxx.txt\x00"; echo $BLOB_DEVOXX_SHA1 | xxd -r -p; echo -ne "40000 folder\x00"; echo $TREE_FOLDER_SHA1 | xxd -r -p) >/tmp/tree && cat -A /tmp/tree && echo
+(echo -ne "tree $(wc --bytes /tmp/tree | awk "{ print \$1 }")\x00"; cat /tmp/tree) >/tmp/git_object && cat -A /tmp/git_object && echo
+TREE_ROOT_SHA1=$(sha1sum /tmp/git_object | awk "{ print \$1 }") && echo $TREE_ROOT_SHA1
+mkdir -p .git/objects/${TREE_ROOT_SHA1:0:2} && cat /tmp/git_object | zlib-compress > .git/objects/${TREE_ROOT_SHA1:0:2}/${TREE_ROOT_SHA1:2}'
+
+show create_trees
+
 # TODO
 
 # Conclusion
