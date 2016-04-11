@@ -161,7 +161,14 @@ run 'echo "ref: refs/heads/master" >.git/HEAD'
 
 show create_refs
 
-# TODO
+# Check
+run git log --graph --decorate --stat
+run 'git show HEAD:devoxx.txt | cat -A'
+run 'git show HEAD:folder/HelloWorld.txt | cat -A'
+run 'git show HEAD:folder/empty.txt | cat -A'
+run ls -la
+run git reset --hard
+run ls -lhpR
 
 # Conclusion
 # GIT_COMMITTER_NAME='Alexandre Garnier' \
