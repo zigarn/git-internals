@@ -46,6 +46,9 @@ show() {
 zlib-uncompress() {
 	python -c "import sys, zlib; sys.stdout.write(zlib.decompress(sys.stdin.read()))"
 }
+zlib-compress() {
+	python -c "import sys, zlib; sys.stdout.write(zlib.compress(sys.stdin.read()))"
+}
 
 clear
 prompt && pause
@@ -111,6 +114,24 @@ fake_run 'display-format HEAD' 'ref: SPACE refs/heads/<branch_name>'
 run 'rm -rf * .git && git init --quiet .'
 run ls -la
 run git log --graph --decorate
+
+# Create blobs
+run 'BLOB="Devoxx France 2016\n" && echo -ne $BLOB | cat -A'
+run 'GIT_OBJECT=$(echo -n "blob $(echo -ne $BLOB | wc --bytes)\x00$BLOB") && echo -ne $GIT_OBJECT | cat -A'
+run 'BLOB_DEVOXX_SHA1=$(echo -ne $GIT_OBJECT | sha1sum | awk "{ print \$1 }") && echo $BLOB_DEVOXX_SHA1'
+run 'mkdir -p .git/objects/${BLOB_DEVOXX_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-compress > .git/objects/${BLOB_DEVOXX_SHA1:0:2}/${BLOB_DEVOXX_SHA1:2}'
+
+run 'BLOB="Hello world!\n" && echo -ne $BLOB | cat -A
+GIT_OBJECT=$(echo -n "blob $(echo -ne $BLOB | wc --bytes)\x00$BLOB") && echo -ne $GIT_OBJECT | cat -A
+BLOB_HELLO_SHA1=$(echo -ne $GIT_OBJECT | sha1sum | awk "{ print \$1 }") && echo $BLOB_HELLO_SHA1
+mkdir -p .git/objects/${BLOB_HELLO_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-compress > .git/objects/${BLOB_HELLO_SHA1:0:2}/${BLOB_HELLO_SHA1:2}'
+
+run 'BLOB="" && echo -e $BLOB | cat -A
+GIT_OBJECT=$(echo -n "blob $(echo -ne $BLOB | wc --bytes)\x00$BLOB") && echo -e $GIT_OBJECT | cat -A
+BLOB_EMPTY_SHA1=$(echo -ne $GIT_OBJECT | sha1sum | awk "{ print \$1 }") && echo $BLOB_EMPTY_SHA1
+mkdir -p .git/objects/${BLOB_EMPTY_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-compress > .git/objects/${BLOB_EMPTY_SHA1:0:2}/${BLOB_EMPTY_SHA1:2}'
+
+show create_blobs
 
 # TODO
 

@@ -1,0 +1,8 @@
+digraph structs {
+  pad="1,2";
+  node [shape=record,fontsize=11];
+  rankdir="TB";
+  _cd08 [fillcolor="white", style="filled,rounded", label="{{obj:blob|cd08}|Hello\ world\!\l}"]
+  _e69d [fillcolor="white", style="filled,rounded", label="{{obj:blob|e69d}|}"]
+  _9617 [fillcolor="white", style="filled,rounded", label="{{obj:blob|9617}|Devoxx\ France\ 2016\l}"]
+}
