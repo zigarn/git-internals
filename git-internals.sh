@@ -155,6 +155,12 @@ run 'mkdir -p .git/objects/${COMMIT_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-com
 
 show create_commit
 
+# Set references
+run 'echo $COMMIT_SHA1 >.git/refs/heads/master'
+run 'echo "ref: refs/heads/master" >.git/HEAD'
+
+show create_refs
+
 # TODO
 
 # Conclusion
