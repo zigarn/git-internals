@@ -107,6 +107,11 @@ LF
 fake_run 'display-format ref' '<sha1>'
 fake_run 'display-format HEAD' 'ref: SPACE refs/heads/<branch_name>'
 
+# Clean
+run 'rm -rf * .git && git init --quiet .'
+run ls -la
+run git log --graph --decorate
+
 # TODO
 
 # Conclusion
