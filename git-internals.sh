@@ -60,7 +60,8 @@ prompt && pause
 #     --message "Entrer dans les entrailles de Git, ou comment faire un commit sans faire du Git.
 #
 # #DevoxxFR 2016" \
-#     introduction $(echo -n '' | git hash-object --stdin -w)
+#     introduction \
+#     $(echo -n '' | git hash-object --stdin -w)
 cd $BASE_DIR
 run git show introduction
 
@@ -180,14 +181,15 @@ run ls -lhpR
 # #DevoxxFR 2016
 #
 # https://bitbucket.org/zigarn/git-internals" \
-#     conclusion $(GIT_COMMITTER_DATE='2016-04-21T19:25:00+0200' \
-#                  GIT_COMMITTER_NAME='Alexandre Garnier' \
-#                  GIT_COMMITTER_EMAIL='alexandre.garnier@zenika.com' \
-#                  GIT_AUTHOR_DATE='2016-04-21T19:25:00+0200' \
-#                  GIT_AUTHOR_NAME='@zigarn' \
-#                  GIT_AUTHOR_EMAIL='zigarn@gmail.com' \
-#                 git commit-tree \
-#                  -m "Merci." \
-#                  4b825dc642cb6eb9a060e54bf8d69288fbee4904)
+#     conclusion \
+#     $(GIT_COMMITTER_DATE='2016-04-21T19:25:00+0200' \
+#       GIT_COMMITTER_NAME='Alexandre Garnier' \
+#       GIT_COMMITTER_EMAIL='alexandre.garnier@zenika.com' \
+#       GIT_AUTHOR_DATE='2016-04-21T19:25:00+0200' \
+#       GIT_AUTHOR_NAME='@zigarn' \
+#       GIT_AUTHOR_EMAIL='zigarn@gmail.com' \
+#       git commit-tree \
+#           -m "Merci." \
+#           4b825dc642cb6eb9a060e54bf8d69288fbee4904)
 cd $BASE_DIR
 run git show --format=fuller conclusion
