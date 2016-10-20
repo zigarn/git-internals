@@ -39,7 +39,7 @@ fake_run() {
 }
 
 show() {
-	eog -f $BASE_DIR/${1}.png
+	eog -f $BASE_DIR/${1}.png 2>/dev/null
 	pause
 }
 
