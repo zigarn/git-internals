@@ -4,5 +4,5 @@ digraph structs {
   rankdir="TB";
   _cd08 [fillcolor="white", style="filled,rounded", label="{{obj:blob|cd08}|Hello\ world\!\l}"]
   _e69d [fillcolor="white", style="filled,rounded", label="{{obj:blob|e69d}|}"]
-  _9617 [fillcolor="white", style="filled,rounded", label="{{obj:blob|9617}|Devoxx\ France\ 2016\l}"]
+  _3478 [fillcolor="white", style="filled,rounded", label="{{obj:blob|3478}|Capitole\ du\ libre\ 2016\l}"]
 }

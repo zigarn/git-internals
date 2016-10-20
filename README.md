@@ -1,7 +1,7 @@
 Entrer dans les entrailles de Git, ou comment faire un commit sans faire du Git.
 ================================================================================
 
-Présentation Devoxx France 2016
+Présentation Capitole du libre 2016
 
 Préparation
 -----------

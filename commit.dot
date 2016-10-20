@@ -1,9 +1,9 @@
 digraph structs {
   node [shape=record,fontsize=11];
   rankdir="TB";
-  _1c30 [fillcolor="palegreen1", style="filled,rounded", label="{{obj:commit|1c30}|tree\ de4e\lauthor\ Alexandre\ Garnier\ \<alexandre\.garnier\@zenika\.com\>\ 1461257700\ \+0200\lcommitter\ Alexandre\ Garnier\ \<alexandre\.garnier\@zenika\.com\>\ 1461257700\ \+0200\l\l1st\ commit\l}"]
-  _refs___heads___master [style=filled, fillcolor=gray,  label="{{ref:local branch|refs\/heads\/master}|1c30\l}"]
-  _refs___heads___master -> _1c30
+  _4336 [fillcolor="palegreen1", style="filled,rounded", label="{{obj:commit|4336}|tree\ b804\lauthor\ Alexandre\ Garnier\ \<zigarn\@gmail\.com\>\ 1479571200\ \+0100\lcommitter\ Alexandre\ Garnier\ \<zigarn\@gmail\.com\>\ 1479571200\ \+0100\l\l1st\ commit\l}"]
+  _refs___heads___master [style=filled, fillcolor=gray,  label="{{ref:local branch|refs\/heads\/master}|4336\l}"]
+  _refs___heads___master -> _4336
   _HEAD [style=filled, fillcolor=gray30, fontcolor=white,  label="{{ref|HEAD}|refs\/heads\/master\l}"]
   _HEAD -> _refs___heads___master
 }
