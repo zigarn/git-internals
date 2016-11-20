@@ -3,6 +3,8 @@ Entrer dans les entrailles de Git, ou comment faire un commit sans faire du Git.
 
 Présentation Devoxx France 2016
 
+[Vidéo](https://youtu.be/Hd_UpJPDlik)
+
 Préparation
 -----------
 
