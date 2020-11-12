@@ -44,10 +44,10 @@ show() {
 }
 
 zlib-uncompress() {
-	python -c "import sys, zlib; sys.stdout.write(zlib.decompress(sys.stdin.read()))"
+	python3 -c "import sys, zlib; sys.stdout.buffer.write(zlib.decompress(sys.stdin.buffer.read()))"
 }
 zlib-compress() {
-	python -c "import sys, zlib; sys.stdout.write(zlib.compress(sys.stdin.read()))"
+	python3 -c "import sys, zlib; sys.stdout.buffer.write(zlib.compress(sys.stdin.buffer.read()))"
 }
 
 clear

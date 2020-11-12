@@ -12,7 +12,7 @@ Cette "présentation" nécessite les logiciels suivants :
 
  - `git`
  - `bash`
- - `python`
+ - `python3`
  - `vim` (pour `xxd`)
  - `graphviz` (pour `dot`)
  - `eog`
