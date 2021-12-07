@@ -180,7 +180,7 @@ run ls -lhpR
 #
 # #DevoxxFR 2016
 #
-# https://bitbucket.org/zigarn/git-internals" \
+# https://github.com/zigarn/git-internals" \
 #     conclusion \
 #     $(GIT_COMMITTER_DATE='2016-04-21T19:25:00+0200' \
 #       GIT_COMMITTER_NAME='Alexandre Garnier' \
