@@ -55,20 +55,20 @@ prompt && pause
 # Intro
 # GIT_COMMITTER_NAME='Alexandre Garnier' \
 # GIT_COMMITTER_EMAIL='alexandre.garnier@zenika.com' \
-# GIT_COMMITTER_DATE='2016-04-21T18:55:00+0200' \
+# GIT_COMMITTER_DATE='2022-04-07T15:00:00+0200' \
 # git -c core.commentchar=- tag --annotate \
 #     --message "Entrer dans les entrailles de Git, ou comment faire un commit sans faire du Git.
 #
-# #DevoxxFR 2016" \
-#     introduction \
+# TZ Zeus 2022-04-07" \
+#     introduction-tz-zeus \
 #     $(echo -n '' | git hash-object --stdin -w)
 cd $BASE_DIR
-run git show introduction
+run git show introduction-tz-zeus
 
 # Creation du dépôt de démo
 run source ./setup-repo.sh
 run git log --graph --decorate --stat
-run 'git show HEAD:devoxx.txt | cat -A'
+run 'git show HEAD:technozaure.txt | cat -A'
 run 'git show HEAD:folder/HelloWorld.txt | cat -A'
 run 'git show HEAD:folder/empty.txt | cat -A'
 
@@ -77,26 +77,26 @@ run cat -A .git/HEAD
 show head
 
 # Reference
-run cat -A .git/refs/heads/master
+run cat -A .git/refs/heads/main
 show ref
 
 # Commit
-run cat -A .git/objects/1c/3071594c824c3e56c2880a5762b255b4353446
-run 'cat .git/objects/1c/3071594c824c3e56c2880a5762b255b4353446 | zlib-uncompress | cat -A'
+run cat -A .git/objects/70/8ec61b4f025fb64e088cb12f2f21528b0dfd02
+run 'cat .git/objects/70/8ec61b4f025fb64e088cb12f2f21528b0dfd02 | zlib-uncompress | cat -A'
 show commit
 
 # Tree
-run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | cat -A'
-run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | xxd -p -s 26 -l 20'
-run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | xxd -p -s 59 -l 20'
-fake_run 'cat .git/objects/de/4e37df389aa8030f77ec4739ec68cffcb08a57 | zlib-uncompress | decode' 'tree 71^@100644 devoxx.txt^@961777f374f9ad986b004f07049b3f6443ff270f40000 folder^@49b4e4747c1c1bd8746235f146fe287992add5e9'
+run 'cat .git/objects/1f/9db589d78405c6031e229956edbfa76d8b1cd5 | zlib-uncompress | cat -A'
+run 'cat .git/objects/1f/9db589d78405c6031e229956edbfa76d8b1cd5 | zlib-uncompress | xxd -p -s 21 -l 20'
+run 'cat .git/objects/1f/9db589d78405c6031e229956edbfa76d8b1cd5 | zlib-uncompress | xxd -p -s 64 -l 20'
+fake_run 'cat .git/objects/1f/9db589d78405c6031e229956edbfa76d8b1cd5 | zlib-uncompress | decode' 'tree 76^@40000 folder^@49b4e4747c1c1bd8746235f146fe287992add5e9100644 technozaure.txt^@dd67068aff90e6cb95f7cc89ca7bef89811e6f03'
 fake_run 'cat .git/objects/49/b4e4747c1c1bd8746235f146fe287992add5e9 | zlib-uncompress | decode' 'tree 79^@100644 HelloWorld.txt^@cd0875583aabe89ee197ea133980a9085d08e497100644 empty.txt^@e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
 show tree
 
 # Blob
-run 'cat .git/objects/96/1777f374f9ad986b004f07049b3f6443ff270f | zlib-uncompress | cat -A'
 run 'cat .git/objects/cd/0875583aabe89ee197ea133980a9085d08e497 | zlib-uncompress | cat -A'
 run 'cat .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 | zlib-uncompress | cat -A'
+run 'cat .git/objects/dd/67068aff90e6cb95f7cc89ca7bef89811e6f03 | zlib-uncompress | cat -A'
 show blob
 
 # Git objects
@@ -117,10 +117,10 @@ run ls -la
 run git log --graph --decorate
 
 # Create blobs
-run 'BLOB="Devoxx France 2016\n" && echo -ne $BLOB | cat -A'
+run 'BLOB="Technozaure Zeus 2022-04-07\n" && echo -ne $BLOB | cat -A'
 run 'GIT_OBJECT=$(echo -n "blob $(echo -ne $BLOB | wc --bytes)\x00$BLOB") && echo -ne $GIT_OBJECT | cat -A'
-run 'BLOB_DEVOXX_SHA1=$(echo -ne $GIT_OBJECT | sha1sum | awk "{ print \$1 }") && echo $BLOB_DEVOXX_SHA1'
-run 'mkdir -p .git/objects/${BLOB_DEVOXX_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-compress > .git/objects/${BLOB_DEVOXX_SHA1:0:2}/${BLOB_DEVOXX_SHA1:2}'
+run 'BLOB_TZ_SHA1=$(echo -ne $GIT_OBJECT | sha1sum | awk "{ print \$1 }") && echo $BLOB_TZ_SHA1'
+run 'mkdir -p .git/objects/${BLOB_TZ_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-compress > .git/objects/${BLOB_TZ_SHA1:0:2}/${BLOB_TZ_SHA1:2}'
 
 run 'BLOB="Hello world!\n" && echo -ne $BLOB | cat -A
 GIT_OBJECT=$(echo -n "blob $(echo -ne $BLOB | wc --bytes)\x00$BLOB") && echo -ne $GIT_OBJECT | cat -A
@@ -140,7 +140,7 @@ run '(echo -ne "tree $(wc --bytes /tmp/tree | awk "{ print \$1 }")\x00"; cat /tm
 run 'TREE_FOLDER_SHA1=$(sha1sum /tmp/git_object | awk "{ print \$1 }") && echo $TREE_FOLDER_SHA1'
 run 'mkdir -p .git/objects/${TREE_FOLDER_SHA1:0:2} && cat /tmp/git_object | zlib-compress > .git/objects/${TREE_FOLDER_SHA1:0:2}/${TREE_FOLDER_SHA1:2}'
 
-run '(echo -ne "100644 devoxx.txt\x00"; echo $BLOB_DEVOXX_SHA1 | xxd -r -p; echo -ne "40000 folder\x00"; echo $TREE_FOLDER_SHA1 | xxd -r -p) >/tmp/tree && cat -A /tmp/tree && echo
+run '(echo -ne "40000 folder\x00"; echo $TREE_FOLDER_SHA1 | xxd -r -p; echo -ne "100644 technozaure.txt\x00"; echo $BLOB_TZ_SHA1 | xxd -r -p) >/tmp/tree && cat -A /tmp/tree && echo
 (echo -ne "tree $(wc --bytes /tmp/tree | awk "{ print \$1 }")\x00"; cat /tmp/tree) >/tmp/git_object && cat -A /tmp/git_object && echo
 TREE_ROOT_SHA1=$(sha1sum /tmp/git_object | awk "{ print \$1 }") && echo $TREE_ROOT_SHA1
 mkdir -p .git/objects/${TREE_ROOT_SHA1:0:2} && cat /tmp/git_object | zlib-compress > .git/objects/${TREE_ROOT_SHA1:0:2}/${TREE_ROOT_SHA1:2}'
@@ -148,7 +148,7 @@ mkdir -p .git/objects/${TREE_ROOT_SHA1:0:2} && cat /tmp/git_object | zlib-compre
 show create_trees
 
 # Create commit
-run 'COMMIT_DATE=$(date -d "2016-04-21T18:55:00+0200" +"%s %z") && echo $COMMIT_DATE'
+run 'COMMIT_DATE=$(date -d "2022-04-07T15:00:00+0200" +"%s %z") && echo $COMMIT_DATE'
 run 'COMMIT="tree $TREE_ROOT_SHA1\nauthor Alexandre Garnier <alexandre.garnier@zenika.com> $COMMIT_DATE\ncommitter Alexandre Garnier <alexandre.garnier@zenika.com> $COMMIT_DATE\n\n1st commit\n" && echo -ne $COMMIT | cat -A'
 run 'GIT_OBJECT=$(echo -n "commit $(echo -ne $COMMIT | wc --bytes)\x00$COMMIT") && echo -ne $GIT_OBJECT | cat -A'
 run 'COMMIT_SHA1=$(echo -ne $GIT_OBJECT | sha1sum | awk "{ print \$1 }") && echo $COMMIT_SHA1'
@@ -157,14 +157,14 @@ run 'mkdir -p .git/objects/${COMMIT_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-com
 show create_commit
 
 # Set references
-run 'echo $COMMIT_SHA1 >.git/refs/heads/master'
-run 'echo "ref: refs/heads/master" >.git/HEAD'
+run 'echo $COMMIT_SHA1 >.git/refs/heads/main'
+run 'echo "ref: refs/heads/main" >.git/HEAD'
 
 show create_refs
 
 # Check
 run git log --graph --decorate --stat
-run 'git show HEAD:devoxx.txt | cat -A'
+run 'git show HEAD:technozaure.txt | cat -A'
 run 'git show HEAD:folder/HelloWorld.txt | cat -A'
 run 'git show HEAD:folder/empty.txt | cat -A'
 run ls -la
@@ -174,22 +174,23 @@ run ls -lhpR
 # Conclusion
 # GIT_COMMITTER_NAME='Alexandre Garnier' \
 # GIT_COMMITTER_EMAIL='alexandre.garnier@zenika.com' \
-# GIT_COMMITTER_DATE='2016-04-21T19:25:00+0200' \
+# GIT_COMMITTER_DATE='2022-04-07T15:30:00+0200' \
 # git -c core.commentchar=- tag --annotate \
 #     --message "Entrer dans les entrailles de Git, ou comment faire un commit sans faire du Git.
 #
-# #DevoxxFR 2016
+# TZ Zeus 2022-04-07
 #
 # https://github.com/zigarn/git-internals" \
-#     conclusion \
-#     $(GIT_COMMITTER_DATE='2016-04-21T19:25:00+0200' \
+#     conclusion-tz-zeus \
+#     $(GIT_COMMITTER_DATE='2022-04-07T15:30:00+0200' \
 #       GIT_COMMITTER_NAME='Alexandre Garnier' \
 #       GIT_COMMITTER_EMAIL='alexandre.garnier@zenika.com' \
-#       GIT_AUTHOR_DATE='2016-04-21T19:25:00+0200' \
+#       GIT_AUTHOR_DATE='2022-04-07T15:30:00+0200' \
 #       GIT_AUTHOR_NAME='@zigarn' \
 #       GIT_AUTHOR_EMAIL='zigarn@gmail.com' \
 #       git commit-tree \
 #           -m "Merci." \
 #           4b825dc642cb6eb9a060e54bf8d69288fbee4904)
 cd $BASE_DIR
-run git show --format=fuller conclusion
+run git show --format=fuller conclusion-tz-zeus
+exit
