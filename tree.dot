@@ -6,8 +6,8 @@ digraph structs {
   _de4e [fillcolor="lightyellow", style="filled,rounded", label="{{obj:tree|de4e}|100644\ blob\ 9617\	devoxx\.txt\l040000\ tree\ 49b4\	folder\l}"]
   _de4e -> _49b4
   _49b4 [fillcolor="lightyellow", style="filled,rounded", label="{{obj:tree|49b4}|100644\ blob\ cd08\	HelloWorld\.txt\l100644\ blob\ e69d\	empty\.txt\l}"]
-  _refs___heads___master [style=filled, fillcolor=gray,  label="{{ref:local branch|refs\/heads\/master}|1c30\l}"]
-  _refs___heads___master -> _1c30
-  _HEAD [style=filled, fillcolor=gray30, fontcolor=white,  label="{{ref|HEAD}|refs\/heads\/master\l}"]
-  _HEAD -> _refs___heads___master
+  _refs___heads___main [style=filled, fillcolor=gray,  label="{{ref:local branch|refs\/heads\/main}|1c30\l}"]
+  _refs___heads___main -> _1c30
+  _HEAD [style=filled, fillcolor=gray30, fontcolor=white,  label="{{ref|HEAD}|refs\/heads\/main\l}"]
+  _HEAD -> _refs___heads___main
 }

@@ -12,8 +12,8 @@ digraph structs {
   _49b4 -> _cd08
   _49b4 -> _e69d
   _9617 [fillcolor="white", style="filled,rounded", label="{{obj:blob|9617}|Devoxx\ France\ 2016\l}"]
-  _refs___heads___master [style=filled, fillcolor=gray,  label="{{ref:local branch|refs\/heads\/master}|1c30\l}"]
-  _refs___heads___master -> _1c30
-  _HEAD [style=filled, fillcolor=gray30, fontcolor=white,  label="{{ref|HEAD}|refs\/heads\/master\l}"]
-  _HEAD -> _refs___heads___master
+  _refs___heads___main [style=filled, fillcolor=gray,  label="{{ref:local branch|refs\/heads\/main}|1c30\l}"]
+  _refs___heads___main -> _1c30
+  _HEAD [style=filled, fillcolor=gray30, fontcolor=white,  label="{{ref|HEAD}|refs\/heads\/main\l}"]
+  _HEAD -> _refs___heads___main
 }

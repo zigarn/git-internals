@@ -77,7 +77,7 @@ run cat -A .git/HEAD
 show head
 
 # Reference
-run cat -A .git/refs/heads/master
+run cat -A .git/refs/heads/main
 show ref
 
 # Commit
@@ -157,8 +157,8 @@ run 'mkdir -p .git/objects/${COMMIT_SHA1:0:2} && echo -ne $GIT_OBJECT | zlib-com
 show create_commit
 
 # Set references
-run 'echo $COMMIT_SHA1 >.git/refs/heads/master'
-run 'echo "ref: refs/heads/master" >.git/HEAD'
+run 'echo $COMMIT_SHA1 >.git/refs/heads/main'
+run 'echo "ref: refs/heads/main" >.git/HEAD'
 
 show create_refs
 
